@@ -1,7 +1,7 @@
 # README
 
 # Task Management System ERD
-![](https://i.imgur.com/OHYinBS.png)
+![](https://i.imgur.com/5czjiZH.png)
 
 # Model 
 
@@ -103,24 +103,5 @@
    <tr>
      <td>tag_id</td> 
      <td>int</td> 
-  </tr>
-</table> 
-
-## Search
-<table>
-   <tr>
-      <td colspan="2">Search</td>    
-   </tr>
-   <tr>
-      <td>Column</td> 
-      <td>Type</td> 
-   </tr>
-   <tr>
-     <td>search_id</td> 
-     <td>int</td> 
-   </tr>
-   <tr>
-     <td>search_input</td> 
-     <td>string</td> 
   </tr>
 </table> 
