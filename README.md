@@ -120,7 +120,7 @@
      <td>int</td> 
    </tr>
    <tr>
-     <td>search</td> 
+     <td>search_input</td> 
      <td>string</td> 
   </tr>
 </table> 
