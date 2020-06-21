@@ -4,7 +4,7 @@
 ![](https://i.imgur.com/aghViM5.png)
 
 # 2. ERD
-![](https://i.imgur.com/usXXoHU.png)
+![](https://i.imgur.com/snWBcQE.png)
 
 ## 2-1 Model 
 
@@ -16,7 +16,7 @@
    </tr>
    <tr>
       <td>user_id</td> 
-      <td>int</td> 
+      <td>integer</td> 
    </tr>
    <tr>
       <td>name</td> 
@@ -44,7 +44,11 @@
    </tr>
    <tr>
       <td>task_id</td> 
-      <td>int</td> 
+      <td>integer</td> 
+   </tr>
+   <tr>
+     <td>user_id</td> 
+     <td>integer</td> 
    </tr>
   <tr>
      <td>title</td> 
@@ -85,7 +89,7 @@
    </tr>
    <tr>
      <td>tag_id</td> 
-     <td>int</td> 
+     <td>integer</td> 
    </tr>
    <tr>
      <td>tag_name</td> 
@@ -105,14 +109,14 @@
    </tr>
    <tr>
      <td>task_tag_id</td> 
-     <td>int</td> 
+     <td>integer</td> 
    </tr>
    <tr>
      <td>task_id</td> 
-     <td>int</td> 
+     <td>integer</td> 
   </tr>
    <tr>
      <td>tag_id</td> 
-     <td>int</td> 
+     <td>integer</td> 
   </tr>
 </table> 
