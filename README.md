@@ -4,7 +4,7 @@
 ![](https://i.imgur.com/aghViM5.png)
 
 # 2. ERD
-![](https://i.imgur.com/snWBcQE.png)
+![](https://i.imgur.com/i37oPFI.png)
 
 ## 2-1 Model 
 
