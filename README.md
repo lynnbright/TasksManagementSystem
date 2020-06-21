@@ -1,11 +1,14 @@
-# README
+# Task Management System 
 
-# Task Management System ERD
+# 1. Wireframe
+![](https://i.imgur.com/aghViM5.png)
+
+# 2. ERD
 ![](https://i.imgur.com/usXXoHU.png)
 
-# Model 
+## 2-1 Model 
 
-## User
+### 2-1-1 User
 <table>
    <tr>
       <th>Column</th> 
@@ -33,7 +36,7 @@
    </tr>
 </table>
 
-## Task
+### 2-1-2 Task
 <table>
    <tr>
       <th>Column</th> 
@@ -74,7 +77,7 @@
 </table>
 
 
-## Tag
+### 2-1-3 Tag
 <table>
    <tr>
       <th>Column</th> 
@@ -94,7 +97,7 @@
   </tr>
 </table>  
 
-## Task_Tag
+### 2-1-4 Task_Tag
 <table>
    <tr>
       <th>Column</th> 
