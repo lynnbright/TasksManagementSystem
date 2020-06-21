@@ -4,7 +4,7 @@
 ![](https://i.imgur.com/aghViM5.png)
 
 # 2. ERD
-![](https://i.imgur.com/i37oPFI.png)
+![](https://i.imgur.com/7qOgOI9.png)
 
 ## 2-1 Model 
 
@@ -31,8 +31,12 @@
      <td>string</td> 
    </tr>
    <tr>
-    <td>role</td> 
-    <td>string</td> 
+     <td>role</td> 
+     <td>integer</td> 
+   </tr>
+   <tr>
+     <td>deleted_at</td> 
+     <td>datetime</td> 
    </tr>
 </table>
 
@@ -74,10 +78,10 @@
      <td>priority</td>
      <td>string</td>
   </tr>
-  <tr>
-    <td>search_task</td>
-    <td>string</td>
-  </tr>
+   <tr>
+     <td>deleted_at</td> 
+     <td>datetime</td> 
+   </tr>
 </table>
 
 
@@ -92,13 +96,13 @@
      <td>integer</td> 
    </tr>
    <tr>
-     <td>tag_name</td> 
+     <td>name</td> 
      <td>string</td> 
   </tr>
-  <tr>
-    <td>search_tag</td>
-    <td>string</td>
-  </tr>
+   <tr>
+     <td>deleted_at</td> 
+     <td>datetime</td> 
+   </tr>
 </table>  
 
 ### 2-1-4 Task_Tag
