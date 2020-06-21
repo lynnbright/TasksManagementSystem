@@ -1,40 +1,46 @@
 # README
 
 # Task Management System ERD
-![](https://i.imgur.com/5czjiZH.png)
+![](https://i.imgur.com/usXXoHU.png)
 
 # Model 
 
 ## User
 <table>
    <tr>
-      <td colspan="3">User</td>    
+      <th>Column</th> 
+      <th>Type</th> 
    </tr>
    <tr>
-      <td>Column</td> 
-      <td>Type</td> 
-   </tr>
-   <tr>
-      <td>id</td> 
-      <td>name</td> 
-   </tr>
-   <tr>
+      <td>user_id</td> 
       <td>int</td> 
+   </tr>
+   <tr>
+      <td>name</td> 
       <td>string</td> 
+   </tr>
+    <tr>
+      <td>email</td> 
+      <td>string</td> 
+   </tr>
+   <tr>
+     <td>password</td> 
+     <td>string</td> 
+   </tr>
+   <tr>
+    <td>role</td> 
+    <td>string</td> 
    </tr>
 </table>
 
 ## Task
 <table>
    <tr>
-      <td colspan="2">Task</td>    
+      <th>Column</th> 
+      <th>Type</th> 
    </tr>
    <tr>
-      <td>Column</td> 
-      <td>Type</td> 
-   </tr>
-   <tr>
-      <td>id</td> 
+      <td>task_id</td> 
       <td>int</td> 
    </tr>
   <tr>
@@ -61,36 +67,38 @@
      <td>priority</td>
      <td>string</td>
   </tr>
+  <tr>
+    <td>search_task</td>
+    <td>string</td>
+  </tr>
 </table>
 
 
 ## Tag
 <table>
    <tr>
-      <td colspan="2">Tag</td>    
+      <th>Column</th> 
+      <th>Type</th> 
    </tr>
    <tr>
-      <td>Column</td> 
-      <td>Type</td> 
-   </tr>
-   <tr>
-     <td>id</td> 
+     <td>tag_id</td> 
      <td>int</td> 
    </tr>
    <tr>
      <td>tag_name</td> 
      <td>string</td> 
   </tr>
+  <tr>
+    <td>search_tag</td>
+    <td>string</td>
+  </tr>
 </table>  
 
 ## Task_Tag
 <table>
    <tr>
-      <td colspan="2">Task_Tag</td>    
-   </tr>
-   <tr>
-      <td>Column</td> 
-      <td>Type</td> 
+      <th>Column</th> 
+      <th>Type</th> 
    </tr>
    <tr>
      <td>task_tag_id</td> 
