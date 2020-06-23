@@ -1,0 +1,11 @@
+<%= form_for(task) do |f| %>
+  任務名稱：<%= f.text_field :title %> <br>
+  任務描述：<%= f.text_area :description %><br>
+  開始時間： <input type="datetime-local" name="task[start_at]"><br>
+  結束時間：<input type="datetime-local" name="task[end_at]"><br>
+  任務狀態：<%= f.select(:status, options_for_select(["待處理", "進行中", "已完成"])) %><br>
+  優先順序：<%= f.select(:priority, options_for_select(["高", "中", "低"])) %><br>
+
+  <%= f.submit("#{action}") %>
+  <%= link_to '返回任務清單', tasks_path %>
+<% end %>

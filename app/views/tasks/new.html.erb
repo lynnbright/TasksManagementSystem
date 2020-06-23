@@ -1,13 +1,4 @@
 <h1>新增任務</h1>
 
-<%= form_for @task, url: tasks_path do |f| %>
+<%= render 'form', task: @task, action: '新增' %>
 
-  任務名稱：<%= f.text_field :title %> <br>
-  任務描述：<%= f.text_area :description %><br>
-  開始時間： <input type="datetime-local" name="task[start_at]"><br>
-  結束時間：<input type="datetime-local" name="task[end_at]"><br>
-  任務狀態：<%= select(:task, :status, options_for_select(["待處理", "進行中", "已完成"])) %><br>
-  優先順序：<%= select(:task, :priority, options_for_select(["高", "中", "低"])) %><br>
-
-  <%= f.submit("新增") %>
-<% end %>
