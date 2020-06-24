@@ -7,5 +7,5 @@
   優先順序：<%= f.select(:priority, options_for_select(["高", "中", "低"], [task.priority]), promot: 'Please Select') %><br>
 
   <%= f.submit("#{action}") %>
-  <%= link_to '返回任務清單', tasks_path %>
+  <%= link_to '返回任務清單', root_path %>
 <% end %>

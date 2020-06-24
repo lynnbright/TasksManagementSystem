@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: '新增成功!'
+      redirect_to root_path, notice: '新增成功!'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: '已刪除!'
+    redirect_to root_path, notice: '已刪除!'
   end
 
   private
