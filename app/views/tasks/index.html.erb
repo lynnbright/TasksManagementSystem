@@ -3,10 +3,10 @@
 <%= link_to "新增任務", new_task_path %>
 
 <% @tasks.each do |task| %><br>
-  <%= link_to task.title, task_path(id: task.id) %>   
+  <%= link_to task.title, task_path(task) %>   
   <%= task.description %>
   <%= task.start_at %>
 
-  <%= link_to '編輯', edit_task_path(id: task.id) %>
-  <%= link_to '刪除', task_path(id: task.id), method: 'delete' %>
+  <%= link_to '編輯', edit_task_path(task) %>
+  <%= button_to '刪除', task_path(task), method: 'delete', data: {confirm: 'Are you sure?'} %>
 <% end %>
