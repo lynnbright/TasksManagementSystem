@@ -130,18 +130,108 @@ RSpec.describe "Tasks", type: :request do
 
   describe 'GET #edit' do
     it "should assign a task to @task " do
-    task = Task.create(
-                        {
-                          title:'寫測試', 
-                          description:'寫新增任務測試', 
-                          status: '待處理',
-                          priority: '高',
-                          start_at: '2020-06-25 00:44:00',
-                          end_at: '2020-06-26 00:44:00',
-                          deleted_at: nil
-                        }
-                      )
-    get task_path(task)
-    expect(assigns(:task)).to eq task
+      task = Task.create(
+                          {
+                            title:'寫測試', 
+                            description:'寫新增任務測試', 
+                            status: '待處理',
+                            priority: '高',
+                            start_at: '2020-06-25 00:44:00',
+                            end_at: '2020-06-26 00:44:00',
+                            deleted_at: nil
+                          }
+                        )
+      get task_path(task)
+      expect(assigns(:task)).to eq task
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'with new valid params' do
+      it 'should update one or more new attributes to @task' do
+        task = Task.create(
+                            {
+                              title:'寫測試', 
+                              description:'寫新增任務測試', 
+                              status: '待處理',
+                              priority: '高',
+                              start_at: '2020-06-25 00:44:00',
+                              end_at: '2020-06-26 00:44:00',
+                              deleted_at: nil
+                            }
+                          )
+                          
+        new_valid_params = 
+                          { 
+                            task: { status: '處理中' }
+                          }  
+        
+        put task_path(task), params: new_valid_params
+        task.reload
+
+        expect(task.status).to eq new_valid_params[:task][:status]
+      end
+
+      it 'should redirect to show template' do
+        task = Task.create(
+                            {
+                              title:'寫測試', 
+                              description:'寫新增任務測試', 
+                              status: '待處理',
+                              priority: '高',
+                              start_at: '2020-06-25 00:44:00',
+                              end_at: '2020-06-26 00:44:00',
+                              deleted_at: nil
+                            }
+                          )
+                          
+        new_valid_params = 
+                          { 
+                            task: { status: '處理中' }
+                          }  
+        
+        put task_path(task), params: new_valid_params          
+
+        expect(response).to redirect_to task_path(task)
+        expect(flash[:notice]).to eq '更新成功!'
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'should delete @task' do
+      task = Task.create(
+                          {
+                            title:'寫測試', 
+                            description:'寫新增任務測試', 
+                            status: '待處理',
+                            priority: '高',
+                            start_at: '2020-06-25 00:44:00',
+                            end_at: '2020-06-26 00:44:00',
+                            deleted_at: nil
+                          }
+                        )
+      
+      expect { delete task_path(task) }.to change { Task.count }.by(-1)
+    end
+
+    it 'should redirect to index template' do
+      task = Task.create(
+                          {
+                            title:'寫測試', 
+                            description:'寫新增任務測試', 
+                            status: '待處理',
+                            priority: '高',
+                            start_at: '2020-06-25 00:44:00',
+                            end_at: '2020-06-26 00:44:00',
+                            deleted_at: nil
+                          }
+                        )
+      
+      delete task_path(task)                  
+
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to eq '已刪除!'
+    end
   end
 end
