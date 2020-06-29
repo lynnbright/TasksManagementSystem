@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    #未來會加上分頁功能
   end
 
   def new
@@ -34,8 +35,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-    redirect_to root_path, notice: '已刪除!'
+    if @task.destroy
+      redirect_to root_path, notice: '已刪除!'
+    else
+      flash[:notice] = '此筆任務無法刪除'
+    end
   end
 
   private
