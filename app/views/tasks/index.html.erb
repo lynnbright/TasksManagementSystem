@@ -2,11 +2,18 @@
 
 <%= link_to "新增任務", new_task_path %>
 
+<div>
 <% @tasks.each do |task| %><br>
-  <%= link_to task.title, task_path(task) %>   
-  <%= task.description %>
-  <%= task.start_at %>
+  <ul>
+    <li>任務名稱：<%= link_to task.title, task_path(task) %></li><br>
+    <li>任務描述：<%= task.description %></li><br>
+    <li>開始時間：<%= task.start_at %></li><br>
+    <li>結束時間：<%= task.end_at %></li><br>
+    <li>任務狀態：<%= task.status %></li><br>
+    <li>優先順序：<%= task.priority %></li><br>
+  </ul>
 
-  <%= link_to '編輯', edit_task_path(task) %>
-  <%= button_to '刪除', task_path(task), method: 'delete', data: {confirm: 'Are you sure?'} %>
+    <%= link_to '編輯', edit_task_path(task) %><br>
+    <%= link_to '刪除', task_path(task), method: 'delete', data: {confirm: 'Are you sure?'} %>
 <% end %>
+</div>
