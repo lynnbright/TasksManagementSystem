@@ -11,3 +11,4 @@ services:
 script:
   - bundle exec rake db:migrate:reset RAILS_ENV=test
   - bundle exec rspec
+  
