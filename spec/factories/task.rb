@@ -7,5 +7,9 @@ FactoryBot.define do
     start_at { '2020-06-25 22:00:00' }
     end_at { '2020-06-26 22:00:00' }
     deleted_at { nil }
+
+    trait :invalid do
+      title { nil }
+    end
   end
 end 
