@@ -2,18 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Tasks", type: :request do
 
-  let!(:task) { Task.create(
-                              {
-                                title:'寫測試', 
-                                description:'寫新增任務測試', 
-                                status: '待處理',
-                                priority: '高',
-                                start_at: '2020-06-25 00:44:00',
-                                end_at: '2020-06-26 00:44:00',
-                                deleted_at: nil
-                              }
-                            )    
-              }
+  let!(:task) { FactoryBot.create(:task) }   
   
   describe 'GET #index' do
     it "should assign all tasks to @tasks" do
@@ -36,56 +25,34 @@ RSpec.describe "Tasks", type: :request do
 
   describe 'POST #create' do
     context 'with valid params' do
-      before(:each) do
-        @valid_task_params = { task: 
-                                    {
-                                      title:'寫測試', 
-                                      description:'寫新增任務測試', 
-                                      status: '待處理',
-                                      priority: '高',
-                                      start_at: '2020-06-25 00:44:00',
-                                      end_at: '2020-06-26 00:44:00'
-                                    }
-                              } 
-      end
+      let!(:task) { FactoryBot.build(:task) }
 
       it 'should create a task' do
         expect {
                   post tasks_path, 
-                  params: @valid_task_params
+                  params: { task: attributes_for(:task) }
                }.to change { Task.count }.by(1)                 
       end
 
       it 'should redirect to root path' do
-        post tasks_path, params: @valid_task_params
+        post tasks_path, params: { task: attributes_for(:task) }
         expect(response).to redirect_to root_path
         expect(flash[:notice]).to eq '新增成功!'
       end
     end
 
     context 'with invalid params' do
-      before(:each) do
-        @invalid_task_params = { task: 
-                                      {
-                                        title:nil, 
-                                        description:'寫新增任務測試', 
-                                        status: '待處理',
-                                        priority: '高',
-                                        start_at: '2020-06-25 00:44:00',
-                                        end_at: '2020-06-26 00:44:00'
-                                      }
-                                } 
-      end
+      let!(:task) { FactoryBot.build(:task, :invalid) }
 
       it 'should not create a task' do
         expect { 
                 post tasks_path, 
-                params: @invalid_task_params
+                params: { task: attributes_for(:task, :invalid) }
               }.to change { Task.count }.by(0)
       end
 
       it 'should render edit template' do
-        post tasks_path, params: @invalid_task_params
+        post tasks_path, params:  { task: attributes_for(:task, :invalid) }
         expect(response).to render_template(:edit)
       end
     end
