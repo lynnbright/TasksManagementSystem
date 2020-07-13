@@ -95,6 +95,7 @@ RSpec.describe "Tasks", type: :request do
   describe 'DELETE #destroy' do
     it 'should delete @task' do
       expect { delete task_path(task) }.to change { Task.count }.by(-1)
+      expect(Task.count).to eq(0)
     end
 
     it 'should redirect to index template' do      
