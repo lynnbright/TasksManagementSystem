@@ -42,17 +42,17 @@ RSpec.describe "Tasks", type: :request do
     end
 
     context 'with invalid params' do
-      let!(:task) { FactoryBot.build(:task, :invalid) }
+      let!(:task) { FactoryBot.build(:task, :invalid_params) }
 
       it 'should not create a task' do
         expect { 
                 post tasks_path, 
-                params: { task: attributes_for(:task, :invalid) }
+                params: { task: attributes_for(:task, :invalid_params) }
               }.to change { Task.count }.by(0)
       end
 
       it 'should render edit template' do
-        post tasks_path, params:  { task: attributes_for(:task, :invalid) }
+        post tasks_path, params:  { task: attributes_for(:task, :invalid_params) }
         expect(response).to render_template(:edit)
       end
     end
@@ -74,19 +74,18 @@ RSpec.describe "Tasks", type: :request do
 
   describe 'PUT #update' do
     context 'with new valid params' do
-      before(:each) do
-        @new_valid_params = { task: { status: '處理中' } }  
-      end
+      let!(:update_task) { FactoryBot.create(:task, :update_params) }
+      let!(:new_status) { Task.find(update_task.id).status }
 
       it 'should update one or more new attributes to @task' do      
-        put task_path(task), params: @new_valid_params
-        task.reload
-        expect(task.status).to eq @new_valid_params[:task][:status]
+        put task_path(update_task), params: { task: attributes_for(:task, :update_params) }
+        update_task.reload
+        expect(update_task.status).to eq new_status
       end
 
       it 'should redirect to show template' do
-        put task_path(task), params: @new_valid_params
-        expect(response).to redirect_to task_path(task)
+        put task_path(update_task), params: { task: attributes_for(:task, :update_params) }
+        expect(response).to redirect_to task_path(update_task)
         expect(flash[:notice]).to eq '更新成功!'
       end
     end
