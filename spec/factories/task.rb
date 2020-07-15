@@ -8,8 +8,12 @@ FactoryBot.define do
     end_at { '2020-06-26 22:00:00' }
     deleted_at { nil }
 
-    trait :invalid do
+    trait :invalid_params do
       title { nil }
+    end
+
+    trait :update_params do
+      status { '處理中' }
     end
   end
 end 
