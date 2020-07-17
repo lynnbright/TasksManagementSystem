@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: '新增成功!'
     else
-      render :edit
+      flash[:notice]
     end
   end
 
