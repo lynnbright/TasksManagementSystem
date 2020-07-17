@@ -22,5 +22,23 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     expect(task.status).to eq '待處理'
     expect(task.priority).to eq '中'
   end
+  scenario "User reads the task" do
+    visit root_path
+    task = Task.last
+    click_link "#{task.title}"
+
+    expect(page).to have_text("#{task.title}")
+    expect(page).to have_text("#{task.description}")
+    expect(page).to have_text("#{task.start_at}")
+    expect(page).to have_text("#{task.end_at}")
+    expect(page).to have_text("#{task.status}")
+    expect(page).to have_text("#{task.priority}")
+  end
+
+  scenario "User updates the task" do
+  end
+
+  scenario "User deletes the task" do
+  end
 end
 
