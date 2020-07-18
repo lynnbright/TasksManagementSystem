@@ -6,13 +6,9 @@ install:
   - nvm install 10
   - npm i -g yarn
   - yarn
-addons:
-  chrome: stable
-before_install:
-  - # start your web application and listen on `localhost`
-  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
 services:
   - postgresql
+  - xvfb
 script:
   - bundle exec rake db:migrate:reset RAILS_ENV=test
   - bundle exec rspec
