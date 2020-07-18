@@ -28,7 +28,7 @@ end
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: {
-      args: %w[headless no-sandbox enable-features=NetworkService,NetworkServiceInProcess]
+      args: %w[headless no-sandbox disable-dev-shm-usage enable-features=NetworkService,NetworkServiceInProcess]
     }
   )
 
