@@ -51,9 +51,9 @@ RSpec.describe "Tasks", type: :request do
               }.to change { Task.count }.by(0)
       end
 
-      it 'should render edit template' do
+      it 'should flash notice' do
         post tasks_path, params:  { task: attributes_for(:task, :invalid_params) }
-        expect(response).to render_template(:edit)
+        expect(flash[:notice]).to eq '輸入格式不正確'
       end
     end
   end

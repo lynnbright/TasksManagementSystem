@@ -21,7 +21,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: '新增成功!'
     else
-      flash[:notice]
+      flash[:notice] = '輸入格式不正確'
     end
   end
 
