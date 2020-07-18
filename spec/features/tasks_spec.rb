@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
+  
   let(:task) { FactoryBot.create(:task) }
+  
   scenario "User creates a new task" do
     visit root_path
     click_link '新增任務'
-
-    #輸入開始與結束時間，待補測試
+    #輸入開始與結束時間，將於步驟14補測試
     fill_in 'task[title]', with: 'task title'
     fill_in 'task[description]', with: 'task description'
     find('#task_status').find(:xpath, 'option[2]').select_option
@@ -22,6 +23,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     expect(task.status).to eq '待處理'
     expect(task.priority).to eq '中'
   end
+
   scenario "User reads the task" do
     visit root_path
     task = Task.last
@@ -36,9 +38,27 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
   end
 
   scenario "User updates the task" do
+    task = Task.last
+    visit task_path(task.id)
+    click_button '編輯'
+    fill_in 'task[title]', with: 'new title'
+    click_button '更新'
+    task.reload
+
+    expect(current_url) == task_path(task.id)
+    expect(page).to have_text '更新成功!'
+    expect(page).to have_text("#{task.title}")
   end
 
   scenario "User deletes the task" do
+    visit root_path
+    task = Task.last
+    find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
+    accept_alert(text: 'Are you sure?') 
+
+    expect(current_url) == root_path
+    expect(page).to have_text '已刪除!'
+    expect(page).to have_no_xpath("//a[@href='#{task_path(task.id)}']")
   end
 end
 
