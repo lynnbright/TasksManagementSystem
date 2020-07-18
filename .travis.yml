@@ -6,6 +6,8 @@ install:
   - nvm install 10
   - npm i -g yarn
   - yarn
+addons:
+  chrome: stable
 services:
   - postgresql
 script:
