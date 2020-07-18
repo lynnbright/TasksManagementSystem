@@ -17,13 +17,11 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 
-Capybara.register_driver :chrome do |app|
-	options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu])
-
-	Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :selenium_chrome
 
 
 RSpec.configure do |config|
