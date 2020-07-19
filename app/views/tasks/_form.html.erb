@@ -6,6 +6,6 @@
   任務狀態：<%= f.select(:status, options_for_select(["待處理", "進行中", "已完成"],[task.status]), prompt: 'Please Select') %><br>
   優先順序：<%= f.select(:priority, options_for_select(["高", "中", "低"], [task.priority]), promot: 'Please Select') %><br>
 
-  <%= f.submit("#{action}") %>
+  <%= f.submit("#{action}") %><br>
   <%= link_to '返回任務清單', root_path %>
 <% end %>
