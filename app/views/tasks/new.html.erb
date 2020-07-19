@@ -1,4 +1,11 @@
 <h1>新增任務</h1>
 
+<% if @task.errors.any? %>
+<ul>
+  <% @task.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 <%= render 'form', task: @task, action: '新增' %>
 

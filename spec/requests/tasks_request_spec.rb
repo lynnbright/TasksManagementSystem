@@ -27,6 +27,11 @@ RSpec.describe "Tasks", type: :request do
     context 'with valid params' do
       let!(:task) { FactoryBot.build(:task) }
 
+      it 'should ensure title, status, priority presence' do
+        task = Task.new.save
+        expect(task).to eq false
+      end
+
       it 'should create a task' do
         expect {
                   post tasks_path, 
@@ -51,9 +56,9 @@ RSpec.describe "Tasks", type: :request do
               }.to change { Task.count }.by(0)
       end
 
-      it 'should flash notice' do
+      it 'should render new template' do
         post tasks_path, params:  { task: attributes_for(:task, :invalid_params) }
-        expect(flash[:notice]).to eq '輸入格式不正確'
+        expect(response).to render_template("new")
       end
     end
   end
