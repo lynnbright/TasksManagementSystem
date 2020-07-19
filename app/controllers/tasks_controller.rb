@@ -18,11 +18,10 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
     if @task.save
       redirect_to root_path, notice: '新增成功!'
     else
-      flash[:notice] = '輸入格式不正確'
+      render :new
     end
   end
 
