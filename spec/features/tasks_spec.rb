@@ -21,7 +21,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     
     task = Task.last
 
-    expect(current_url) == root_path
+    expect(current_path).to eq(root_path)
     expect(page).to have_text '新增成功!'
     expect_task_attributes_eq(
       task, 
@@ -56,7 +56,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     click_button '更新'
     task.reload
 
-    expect(current_url) == task_path(task.id)
+    expect(current_path).to eq(task_path(task.id))
     expect(page).to have_text '更新成功!'
     expect(page).to have_text("#{task.title}")
   end
@@ -67,24 +67,10 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
     accept_alert(text: 'Are you sure?') 
 
-    expect(current_url) == root_path
+    expect(current_path).to eq(root_path)
     expect(page).to have_text '已刪除!'
     expect(page).to have_no_xpath("//a[@href='#{task_path(task.id)}']")
   end
 end
 
-# private
-# def expect_task_attributes_eq(task, values = {})
-#   values.each do |k, v|
-#     task_value = task.try(k.to_sym)
-#     expect(task_value).to eq(v)
-#   end
-# end
-
-# def expect_task_contents_eq(task, values = {})
-#   values.each do |k, v|
-#     view_task_contents = task.try(k.to_sym)
-#     expect(view_task_contents).to have_text(v)
-#   end
-# end
 
