@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Tasks", type: :request do
 
-  let!(:task) { FactoryBot.create(:task) }   
+  let!(:task) { create(:task) }   
   
   describe 'GET #index' do
     it "should assign all tasks to @tasks" do
@@ -25,7 +25,7 @@ RSpec.describe "Tasks", type: :request do
 
   describe 'POST #create' do
     context 'with valid params' do
-      let!(:task) { FactoryBot.build(:task) }
+      let!(:task) { build(:task) }
 
       it 'should ensure title, status, priority presence' do
         task = Task.new.save
@@ -47,7 +47,7 @@ RSpec.describe "Tasks", type: :request do
     end
 
     context 'with invalid params' do
-      let!(:task) { FactoryBot.build(:task, :invalid_params) }
+      let!(:task) { build(:task, :invalid_params) }
 
       it 'should not create a task' do
         expect { 
@@ -79,7 +79,7 @@ RSpec.describe "Tasks", type: :request do
 
   describe 'PUT #update' do
     context 'with new valid params' do
-      let!(:update_task) { FactoryBot.create(:task, :update_params) }
+      let!(:update_task) { create(:task, :update_params) }
       let!(:new_status) { Task.find(update_task.id).status }
 
       it 'should update one or more new attributes to @task' do      

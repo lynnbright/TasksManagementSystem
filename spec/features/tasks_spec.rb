@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
   
-  let(:task) { FactoryBot.create(:task) }
+  let(:task) { create(:task) }
   
   scenario "User creates a new task" do
     visit root_path
@@ -16,7 +16,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     
     task = Task.last
 
-    expect(current_url) == root_path
+    expect(current_url).to eq(root_path)
     expect(page).to have_text '新增成功!'
     expect(task.title).to eq 'task title'
     expect(task.description).to eq 'task description'
@@ -45,7 +45,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     click_button '更新'
     task.reload
 
-    expect(current_url) == task_path(task.id)
+    expect(current_url).to eq(task_path(task.id))
     expect(page).to have_text '更新成功!'
     expect(page).to have_text("#{task.title}")
   end
@@ -56,7 +56,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
     accept_alert(text: 'Are you sure?') 
 
-    expect(current_url) == root_path
+    expect(current_url).to eq(root_path)
     expect(page).to have_text '已刪除!'
     expect(page).to have_no_xpath("//a[@href='#{task_path(task.id)}']")
   end
