@@ -1,4 +1,9 @@
 require 'rails_helper'
+require 'support/expectations_helper'
+
+RSpec.configure do |c|
+  c.include ExpectationsHelper
+end
 
 RSpec.describe "Tasks", type: :request do
 
@@ -36,7 +41,18 @@ RSpec.describe "Tasks", type: :request do
         expect {
           post tasks_path, 
           params: { task: attributes_for(:task) }
-        }.to change { Task.count }.by(1)                 
+        }.to change { Task.count }.by(1)
+        
+        last_task = Task.last 
+        expect_task_attributes_eq(
+          last_task, 
+          title: 'go jogging', 
+          description: 'run for a better life', 
+          start_at: '2020-06-25 22:00:00',
+          end_at: '2020-06-26 22:00:00',
+          status: '待處理', 
+          priority: '高'
+        )
       end
 
       it 'should redirect to root path' do

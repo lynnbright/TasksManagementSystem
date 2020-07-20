@@ -1,4 +1,9 @@
 require 'rails_helper'
+require 'support/expectations_helper'
+
+RSpec.configure do |c|
+  c.include ExpectationsHelper
+end
 
 RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
   
@@ -68,18 +73,18 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
   end
 end
 
-private
-def expect_task_attributes_eq(task, values = {})
-  values.each do |k, v|
-    task_value = task.try(k.to_sym)
-    expect(task_value).to eq(v)
-  end
-end
+# private
+# def expect_task_attributes_eq(task, values = {})
+#   values.each do |k, v|
+#     task_value = task.try(k.to_sym)
+#     expect(task_value).to eq(v)
+#   end
+# end
 
-def expect_task_contents_eq(task, values = {})
-  values.each do |k, v|
-    view_task_contents = task.try(k.to_sym)
-    expect(view_task_contents).to have_text(v)
-  end
-end
+# def expect_task_contents_eq(task, values = {})
+#   values.each do |k, v|
+#     view_task_contents = task.try(k.to_sym)
+#     expect(view_task_contents).to have_text(v)
+#   end
+# end
 
