@@ -34,9 +34,9 @@ RSpec.describe "Tasks", type: :request do
 
       it 'should create a task' do
         expect {
-                  post tasks_path, 
-                  params: { task: attributes_for(:task) }
-               }.to change { Task.count }.by(1)                 
+          post tasks_path, 
+          params: { task: attributes_for(:task) }
+        }.to change { Task.count }.by(1)                 
       end
 
       it 'should redirect to root path' do
@@ -100,6 +100,9 @@ RSpec.describe "Tasks", type: :request do
     it 'should delete @task' do
       expect { delete task_path(task) }.to change { Task.count }.by(-1)
       expect(Task.count).to eq(0)
+      
+      delete_task = Task.find_by(id: task.id)
+      expect(delete_task).to be_nil
     end
 
     it 'should redirect to index template' do      
