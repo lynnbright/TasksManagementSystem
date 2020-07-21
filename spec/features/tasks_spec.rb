@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'support/expectations_helper'
 
-RSpec.configure do |c|
-  c.include ExpectationsHelper
+RSpec.configure do |config|
+  config.include ExpectationsHelper
 end
 
 RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
@@ -59,17 +59,19 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     expect(current_path).to eq(task_path(task.id))
     expect(page).to have_text '更新成功!'
     expect(page).to have_text("#{task.title}")
+    expect(task.title).to eq 'new title'
   end
 
   scenario "User deletes the task" do
     visit root_path
     task = Task.last
     find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
-    accept_alert(text: 'Are you sure?') 
+    accept_alert(text: 'Are you sure?')
 
     expect(current_path).to eq(root_path)
     expect(page).to have_text '已刪除!'
     expect(page).to have_no_xpath("//a[@href='#{task_path(task.id)}']")
+    expect(Task.find_by(id: task.id)).to be_nil
   end
 end
 

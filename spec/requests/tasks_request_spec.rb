@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'support/expectations_helper'
 
-RSpec.configure do |c|
-  c.include ExpectationsHelper
+RSpec.configure do |config|
+  config.include ExpectationsHelper
 end
 
 RSpec.describe "Tasks", type: :request do
@@ -11,8 +11,8 @@ RSpec.describe "Tasks", type: :request do
   
   describe 'GET #index' do
     it "should assign all tasks to @tasks" do
-        get tasks_path
-        expect(assigns(:tasks)).to eq [task]
+      get tasks_path
+      expect(assigns(:tasks)).to eq [task]
     end
 
     it "should render the index template" do
