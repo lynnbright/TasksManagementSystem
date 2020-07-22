@@ -66,7 +66,7 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
     visit root_path
     task = Task.last
     find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
-    accept_alert(text: 'Are you sure?')
+    accept_alert(text: I18n.t("message.are_you_sure_to_delete", title: task.title))
 
     expect(current_path).to eq(root_path)
     expect(page).to have_text '已刪除!'

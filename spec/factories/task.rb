@@ -4,8 +4,8 @@ FactoryBot.define do
     description { 'run for a better life' }
     status { '待處理' }
     priority { '高' }
-    start_at { '2020-06-25 22:00:00' }
-    end_at { '2020-06-26 22:00:00' }
+    start_at { "#{ Time.zone.now }" }
+    end_at { "#{ Time.zone.now + 1.day}" }
     deleted_at { nil }
 
     trait :invalid_params do
