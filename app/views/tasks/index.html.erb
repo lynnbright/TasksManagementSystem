@@ -1,20 +1,20 @@
-<h1>任務列表</h1>
+<h1><%= t("task.headline.list") %></h1>
 
-<%= link_to "新增任務", new_task_path %>
+<%= link_to t("task.headline.new_task"), new_task_path %>
 
 <div>
 <% @tasks.each do |task| %><br>
   <ul>
-    <li>任務名稱：<%= link_to task.title, task_path(task) %></li><br>
-    <li>任務描述：<%= task.description %></li><br>
-    <li>開始時間：<%= task.start_at %></li><br>
-    <li>結束時間：<%= task.end_at %></li><br>
-    <li>任務狀態：<%= task.status %></li><br>
-    <li>優先順序：<%= task.priority %></li><br>
+    <li><%= t("task.content.title") %>：<%= link_to task.title, task_path(task) %></li><br>
+    <li><%= t("task.content.description") %>：<%= task.description %></li><br>
+    <li><%= t("task.content.start_at") %>：<%= task.start_at %></li><br>
+    <li><%= t("task.content.end_at") %>：<%= task.end_at %></li><br>
+    <li><%= t("task.content.status") %>：<%= task.status %></li><br>
+    <li><%= t("task.content.priority") %>：<%= task.priority %></li><br>
   </ul>
 
-  <%= link_to '編輯', edit_task_path(task) %>
-  <%= link_to '刪除', task_path(task), method: 'delete', data: {confirm: 'Are you sure?'} %>
+  <%= link_to t("task.action.edit"), edit_task_path(task) %>
+  <%= link_to t("task.action.delete"), task_path(task), method: 'delete', data: {confirm: t("message.are_you_sure_to_delete", title: task.title) } %>
 <% end %>
 </div>
 

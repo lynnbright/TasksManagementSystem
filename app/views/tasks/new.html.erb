@@ -1,4 +1,4 @@
-<h1>新增任務</h1>
+<h1><%= t("task.headline.new_task") %></h1>
 
 <% if @task.errors.any? %>
 <ul>
@@ -7,4 +7,4 @@
   <% end %>
 </ul>
 <% end %>
-<%= render 'form', task: @task, action: '新增' %>
+<%= render 'form', task: @task, action: t("task.action.create") %>

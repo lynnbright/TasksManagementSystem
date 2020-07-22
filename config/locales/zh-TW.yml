@@ -1,0 +1,36 @@
+"zh-TW":
+  task:
+    headline:
+      list: 任務列表
+      new_task: 新增任務
+      edit_task: 編輯任務
+    content:
+      title: 任務名稱
+      description: 任務描述
+      start_at: 開始時間
+      end_at: 結束時間
+      status: 任務狀態
+      priority: 優先順序
+    action:
+      back: 返回任務清單
+      create: 新增
+      edit: 編輯
+      update: 更新
+      delete: 刪除
+  
+  status:
+    ToDo: 待處理
+    Doing: 處理中
+    Done: 已完成
+  
+  priority:
+    high: 高
+    mid: 中
+    low: 低
+
+  message:
+    create_success: 新增成功!
+    update_success: 更新成功!
+    deleted: 已刪除!
+    fail_to_delete: 此筆任務無法刪除
+    are_you_sure_to_delete: "確定要刪除%{title}嗎？"
