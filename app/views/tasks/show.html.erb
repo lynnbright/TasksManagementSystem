@@ -6,8 +6,8 @@
   <%= t("task.content.description") %>：<%= @task.description %><br>
   <%= t("task.content.start_at") %>： <%= @task.start_at %><br>
   <%= t("task.content.end_at") %>：<%= @task.end_at %><br>
-  <%= t("task.content.status") %>：<%= @task.status%><br>
-  <%= t("task.content.priority") %>：<%= @task.priority %><br>
+  <%= t("task.content.status") %>：<%= t("status.#{@task.status}") %><br>
+  <%= t("task.content.priority") %>：<%= t("priority.#{@task.priority}")  %><br>
 
   <%= f.submit(t("task.action.edit")) %><br>
   <%= link_to t("task.action.back"), root_path %>

@@ -3,8 +3,8 @@
   <%= t("task.content.description") %>：<%= f.text_area :description %><br>
   <%= t("task.content.start_at") %>： <input type="datetime-local" name="task[start_at]"><br>
   <%= t("task.content.end_at") %>：<input type="datetime-local" name="task[end_at]"><br>
-  <%= t("task.content.status") %>：<%= f.select(:status, options_for_select([ t("status.ToDo") , t("status.Doing"), t("status.Done")],[task.status]), prompt: 'Please Select') %><br>
-  <%= t("task.content.priority") %>：<%= f.select(:priority, options_for_select([ t("priority.high"), t("priority.mid"), t("priority.low") ], [task.priority]), promot: 'Please Select') %><br>
+  <%= t("task.content.status") %>：<%= f.select(:status, options_for_select( Task.status_options, [task.status]), prompt: 'Please Select') %><br>
+  <%= t("task.content.priority") %>：<%= f.select(:priority, options_for_select( Task.priority_options, [task.priority]), promot: 'Please Select') %><br>
 
   <%= f.submit("#{action}") %><br>
   <%= link_to t("task.action.back"), root_path %>

@@ -20,13 +20,20 @@
   
   status:
     ToDo: 待處理
-    Doing: 處理中
+    Doing: 進行中
     Done: 已完成
+    0: 待處理
+    1: 進行中
+    2: 已完成
   
   priority:
-    high: 高
-    mid: 中
     low: 低
+    mid: 中
+    high: 高
+    0: 低
+    1: 中
+    2: 高
+
 
   message:
     create_success: 新增成功!

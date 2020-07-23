@@ -1,5 +1,4 @@
 <h1><%= t("task.headline.list") %></h1>
-
 <%= link_to t("task.headline.new_task"), new_task_path %>
 
 <div>
@@ -9,8 +8,8 @@
     <li><%= t("task.content.description") %>：<%= task.description %></li><br>
     <li><%= t("task.content.start_at") %>：<%= task.start_at %></li><br>
     <li><%= t("task.content.end_at") %>：<%= task.end_at %></li><br>
-    <li><%= t("task.content.status") %>：<%= task.status %></li><br>
-    <li><%= t("task.content.priority") %>：<%= task.priority %></li><br>
+    <li><%= t("task.content.status") %>：<%= t("status.#{task.status}") %></li><br>
+    <li><%= t("task.content.priority") %>：<%= t("priority.#{task.priority}") %></li><br>
   </ul>
 
   <%= link_to t("task.action.edit"), edit_task_path(task) %>
