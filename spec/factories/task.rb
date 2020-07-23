@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :update_params do
-      status { '處理中' }
+      status { '進行中' }
     end
   end
 end 
