@@ -8,6 +8,13 @@ FactoryBot.define do
     end_at { "#{ Time.zone.now + 1.day}" }
     deleted_at { nil }
 
+    trait :newest_task do
+      title { 'newest title' }
+      description { 'newest description' }
+      status { '進行中' }
+      priority { '中' }
+    end
+
     trait :invalid_params do
       title { nil }
     end
