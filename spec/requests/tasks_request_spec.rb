@@ -7,12 +7,21 @@ end
 
 RSpec.describe "Tasks", type: :request do
 
-  let!(:task) { create(:task) }   
+  let!(:task) { create(:task) }
   
   describe 'GET #index' do
+    
     it "should assign all tasks to @tasks" do
       get tasks_path
       expect(assigns(:tasks)).to eq [task]
+    end
+  
+    it "should sort all tasks in descending order" do
+      newest_task = create(:task, :newest_task)
+      get tasks_path
+      
+      expect(assigns(:tasks).first.created_at).to eq Task.maximum("created_at")
+      expect(assigns(:tasks).last.created_at).to eq Task.minimum("created_at")
     end
 
     it "should render the index template" do
@@ -46,7 +55,7 @@ RSpec.describe "Tasks", type: :request do
         last_task = Task.last 
         expect_task_attributes_eq(
           last_task, 
-          title: 'go jogging', 
+          title: "#{last_task.title}", 
           description: 'run for a better life', 
           start_at: "#{ Time.zone.now }",
           end_at: "#{ Time.zone.now + 1.day}",
