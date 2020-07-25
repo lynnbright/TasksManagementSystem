@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_params, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :desc)
     #未來會加上分頁功能
   end
 
