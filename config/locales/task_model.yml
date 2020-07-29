@@ -2,10 +2,12 @@
   activerecord:
     attributes:
       task:
-        title: 任務名稱
-        description: 任務描述
-        start_at: 開始時間
-        end_at: 結束時間
-        status: 任務狀態
-        priority: 優先順序
+        statuses:
+          ToDo: 待處理
+          Doing: 進行中
+          Done: 已完成
+        priorities:
+          Low: 低
+          Mid: 中
+          High: 高
 
