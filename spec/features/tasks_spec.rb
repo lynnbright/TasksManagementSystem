@@ -20,37 +20,44 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
       find("#task_priority").find(:xpath, "option[2]").select_option
       click_button "新增"
       
-      task = Task.last
+      task = Task.find(2)
 
       expect(current_path).to eq(root_path)
       expect(page).to have_text "新增成功!"
+      expect_task_contents_eq(
+        task, 
+        title: "task title", 
+        description: "task description", 
+        status: "ToDo", 
+        priority: "Mid"
+      )
       expect_task_attributes_eq(
         task, 
         title: "task title", 
         description: "task description", 
-        status: "待處理", 
-        priority: "中"
+        status: "ToDo", 
+        priority: "Mid"
       )
     end
 
     scenario "User reads the task" do
       visit root_path
-      task = Task.last
-      find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "#{task.title}").click
+      task = Task.find(1)
+      find(:xpath, "//a[@href='/tasks/1']", text: "go jogging").click
 
       expect_task_contents_eq(
         task, 
-        title: "#{task.title}", 
-        description: "#{task.description}", 
-        start_at: "#{task.start_at}", 
-        end_at: "#{task.end_at}", 
-        status: "#{task.status}", 
-        priority: "#{task.priority}" 
+        title: "go jogging", 
+        description: "run for a better life", 
+        start_at: task.start_at, 
+        end_at: task.end_at, 
+        status: "ToDo", 
+        priority: "High"
       )
     end
 
     scenario "User updates the task" do
-      task = Task.last
+      task = Task.find(1)
       visit task_path(task.id)
       click_button "編輯"
       fill_in "task[title]", with: "new title"
@@ -59,20 +66,20 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
 
       expect(current_path).to eq(task_path(task.id))
       expect(page).to have_text "更新成功!"
-      expect(page).to have_text("#{task.title}")
+      expect(page).to have_text("new title")
       expect(task.title).to eq "new title"
     end
 
     scenario "User deletes the task" do
       visit root_path
-      task = Task.last
-      find(:xpath, "//a[@href='#{task_path(task.id)}']", text: "刪除").click
+      task = Task.find(1)
+      find(:xpath, "//a[@href='/tasks/1']", text: "刪除").click
       accept_alert(text: I18n.t("message.are_you_sure_to_delete", title: task.title))
   
       expect(current_path).to eq(root_path)
       expect(page).to have_text "已刪除!"
-      expect(page).to have_no_xpath("//a[@href='#{task_path(task.id)}']")
-      expect(Task.find_by(id: task.id)).to be_nil
+      expect(page).to have_no_xpath("//a[@href='/tasks/1']")
+      expect(Task.find_by(id: 1)).to be_nil
     end
   end
 
