@@ -48,8 +48,8 @@ RSpec.describe "Tasks", type: :request do
           last_task, 
           title: 'go jogging', 
           description: 'run for a better life', 
-          start_at: '2020-06-25 22:00:00',
-          end_at: '2020-06-26 22:00:00',
+          start_at: "#{ Time.zone.now }",
+          end_at: "#{ Time.zone.now + 1.day}",
           status: '待處理', 
           priority: '高'
         )

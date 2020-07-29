@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to root_path, notice: '新增成功!'
+      redirect_to root_path, notice: I18n.t("message.create_success")
     else
       render :new
     end
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to task_path, notice: '更新成功!'
+      redirect_to task_path, notice: I18n.t("message.update_success")
     else
       render :edit
     end
@@ -35,9 +35,9 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to root_path, notice: '已刪除!'
+      redirect_to root_path, notice: I18n.t("message.deleted")
     else
-      flash[:notice] = '此筆任務無法刪除'
+      flash[:notice] = I18n.t("message.fail_to_delete")
     end
   end
 

@@ -2,13 +2,13 @@
 
 <%= form_for @task, url: edit_task_path, method: 'get' do |f| %>
 
-  任務名稱：<%= @task.title %> <br>
-  任務描述：<%= @task.description %><br>
-  開始時間： <%= @task.start_at %><br>
-  結束時間：<%= @task.end_at %><br>
-  任務狀態：<%= @task.status%><br>
-  優先順序：<%= @task.priority %><br>
+  <%= t("task.content.title") %>：<%= @task.title %> <br>
+  <%= t("task.content.description") %>：<%= @task.description %><br>
+  <%= t("task.content.start_at") %>： <%= @task.start_at %><br>
+  <%= t("task.content.end_at") %>：<%= @task.end_at %><br>
+  <%= t("task.content.status") %>：<%= t("status.#{@task.status}") %><br>
+  <%= t("task.content.priority") %>：<%= t("priority.#{@task.priority}")  %><br>
 
-  <%= f.submit("編輯") %><br>
-  <%= link_to '返回任務清單', root_path %>
+  <%= f.submit(t("task.action.edit")) %><br>
+  <%= link_to t("task.action.back"), root_path %>
 <% end %>
