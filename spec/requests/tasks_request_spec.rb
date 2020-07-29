@@ -11,12 +11,12 @@ RSpec.describe "Tasks", type: :request do
   
   describe 'GET #index' do
     
-    it "should assign all tasks to @tasks" do
+    it "assigns all tasks to @tasks" do
       get tasks_path
       expect(assigns(:tasks)).to eq [task]
     end
   
-    it "should sort all tasks in descending order" do
+    it "sorts all tasks in descending order" do
       newest_task = create(:task, :newest_task)
       get tasks_path
       
@@ -24,14 +24,14 @@ RSpec.describe "Tasks", type: :request do
       expect(assigns(:tasks).last.created_at).to eq Task.minimum("created_at")
     end
 
-    it "should render the index template" do
+    it "renders the index template" do
       get tasks_path
       expect(response).to render_template("index")
     end
   end
 
   describe 'GET #new' do
-    it 'should assign a new task to @task ' do
+    it 'assigns a new task to @task ' do
       get new_task_path
       expect(assigns(:task)).to be_a_new(Task)
     end
@@ -41,30 +41,25 @@ RSpec.describe "Tasks", type: :request do
     context 'with valid params' do
       let!(:task) { build(:task) }
 
-      it 'should ensure title, status, priority presence' do
-        task = Task.new.save
-        expect(task).to eq false
-      end
-
-      it 'should create a task' do
+      it 'creates a task' do
         expect {
           post tasks_path, 
           params: { task: attributes_for(:task) }
         }.to change { Task.count }.by(1)
         
-        last_task = Task.last 
+        task = Task.last
         expect_task_attributes_eq(
-          last_task, 
-          title: "#{last_task.title}", 
-          description: 'run for a better life', 
+          task, 
+          title: "go jogging", 
+          description: "run for a better life", 
           start_at: "#{ Time.zone.now }",
           end_at: "#{ Time.zone.now + 1.day}",
-          status: '待處理', 
-          priority: '高'
+          status: "ToDo", 
+          priority: "High"
         )
       end
 
-      it 'should redirect to root path' do
+      it 'redirects to root path' do
         post tasks_path, params: { task: attributes_for(:task) }
         expect(response).to redirect_to root_path
         expect(flash[:notice]).to eq '新增成功!'
@@ -81,7 +76,7 @@ RSpec.describe "Tasks", type: :request do
               }.to change { Task.count }.by(0)
       end
 
-      it 'should render new template' do
+      it 'renders new template' do
         post tasks_path, params:  { task: attributes_for(:task, :invalid_params) }
         expect(response).to render_template("new")
       end
@@ -89,14 +84,14 @@ RSpec.describe "Tasks", type: :request do
   end
 
   describe 'GET #show' do
-    it "should assign a task to @task " do    
+    it "assigns a task to @task " do    
       get task_path(task)
       expect(assigns(:task)).to eq task
     end
   end
 
   describe 'GET #edit' do
-    it "should assign a task to @task " do
+    it "assigns a task to @task " do
       get edit_task_path(task)
       expect(assigns(:task)).to eq task
     end
@@ -107,13 +102,13 @@ RSpec.describe "Tasks", type: :request do
       let!(:update_task) { create(:task, :update_params) }
       let!(:new_status) { Task.find(update_task.id).status }
 
-      it 'should update one or more new attributes to @task' do      
+      it 'updates one or more new attributes to @task' do      
         put task_path(update_task), params: { task: attributes_for(:task, :update_params) }
         update_task.reload
         expect(update_task.status).to eq new_status
       end
 
-      it 'should redirect to show template' do
+      it 'redirects to show template' do
         put task_path(update_task), params: { task: attributes_for(:task, :update_params) }
         expect(response).to redirect_to task_path(update_task)
         expect(flash[:notice]).to eq '更新成功!'
@@ -122,7 +117,7 @@ RSpec.describe "Tasks", type: :request do
   end
 
   describe 'DELETE #destroy' do
-    it 'should delete @task' do
+    it 'deletes @task' do
       expect { delete task_path(task) }.to change { Task.count }.by(-1)
       expect(Task.count).to eq(0)
       
@@ -130,7 +125,7 @@ RSpec.describe "Tasks", type: :request do
       expect(delete_task).to be_nil
     end
 
-    it 'should redirect to index template' do      
+    it 'redirects to index template' do      
       delete task_path(task)                  
       expect(response).to redirect_to root_path
       expect(flash[:notice]).to eq '已刪除!'
