@@ -3,6 +3,6 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
 
-  enum status: { ToDo: 0, Doing: 1, Done: 2 }
-  enum priority: { Low: 0, Mid: 1, High: 2 }
+  enum status: { todo: 0, doing: 1, done: 2 }
+  enum priority: { low: 0, mid: 1, high: 2 }
 end

@@ -19,14 +19,14 @@
       delete: 刪除
   
   status:
-    ToDo: 待處理
-    Doing: 進行中
-    Done: 已完成
+    todo: 待處理
+    doing: 進行中
+    done: 已完成
   
   priority:
-    Low: 低
-    Mid: 中
-    High: 高
+    low: 低
+    mid: 中
+    high: 高
 
   message:
     create_success: 新增成功!
