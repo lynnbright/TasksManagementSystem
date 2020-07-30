@@ -23,6 +23,14 @@ RSpec.describe "Tasks", type: :request do
       expect(assigns(:tasks).first.created_at).to eq Task.maximum("created_at")
       expect(assigns(:tasks).last.created_at).to eq Task.minimum("created_at")
     end
+  
+    it "sorts all tasks in descending order" do
+      newest_task = create(:task, :newest_task)
+      get tasks_path
+      
+      expect(assigns(:tasks).first.created_at).to eq Task.maximum("created_at")
+      expect(assigns(:tasks).last.created_at).to eq Task.minimum("created_at")
+    end
 
     it "renders the index template" do
       get tasks_path
