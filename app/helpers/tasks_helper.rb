@@ -4,6 +4,6 @@ module TasksHelper
   end
 
   def get_options_hash(col_name)
-    Task.send(col_name.pluralize)
+    Task.try(col_name.pluralize)
   end
 end
