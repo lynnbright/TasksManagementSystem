@@ -1,10 +1,18 @@
+<% if task.errors.any? %>
+  <ul>
+    <% task.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for(task) do |f| %>
   <%= t("task.content.title") %>：<%= f.text_field :title %> <br>
   <%= t("task.content.description") %>：<%= f.text_area :description %><br>
-  <%= t("task.content.start_at") %>： <input type="datetime-local" name="task[start_at]"><br>
-  <%= t("task.content.end_at") %>：<input type="datetime-local" name="task[end_at]"><br>
+  <%= t("task.content.start_at") %>：<%= f.datetime_select :start_at,:order => [:year, :month, :day] %><br>
+  <%= t("task.content.end_at") %>：<%= f.datetime_select :end_at,:order => [:year, :month, :day] %><br>
   <%= t("task.content.status") %>：<%= f.select(:status, options_for_select( form_select_options('status'), [task.status]), prompt: 'Please Select') %><br>
-  <%= t("task.content.priority") %>：<%= f.select(:priority, options_for_select( form_select_options('priority'), [task.priority]), promot: 'Please Select') %><br>
+  <%= t("task.content.priority") %>：<%= f.select(:priority, options_for_select( form_select_options('priority'), [task.priority]), prompt: 'Please Select') %><br>
 
   <%= f.submit("#{action}") %><br>
   <%= link_to t("task.action.back"), root_path %>
