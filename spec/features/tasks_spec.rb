@@ -29,14 +29,14 @@ RSpec.feature "Tasks", driver: :selenium_chrome, js: true, type: :feature do
         title: "title_2", 
         description: "description_2", 
         status: "todo", 
-        priority: "mid"
+        priority: "low"
       )
       expect_task_attributes_eq(
         task, 
         title: "title_2", 
         description: "description_2", 
         status: "todo", 
-        priority: "mid"
+        priority: "low"
       )
     end
 

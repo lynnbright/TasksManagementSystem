@@ -1,10 +1,2 @@
 <h1><%= t("task.headline.new_task") %></h1>
-
-<% if @task.errors.any? %>
-<ul>
-  <% @task.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
 <%= render 'form', task: @task, action: t("task.action.create") %>
