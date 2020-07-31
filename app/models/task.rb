@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   validates :title, presence: true
-  validates :status, presence: true, inclusion: { in: %w(ToDo Doing Done) }
-  validates :priority, presence: true, inclusion: { in: %w(Low Mid High) }
+  validates :status, presence: true, inclusion: { in: %w(todo doing done) }
+  validates :priority, presence: true, inclusion: { in: %w(low mid high) }
   validates :start_at, presence: true
   validates :end_at, presence: true
   validates_with TaskValidator 

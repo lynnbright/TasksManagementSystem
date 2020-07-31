@@ -15,7 +15,7 @@ RSpec.describe Task, type: :model do
     end
 
     context "valid entry" do
-      ["ToDo", "Doing", "Done"].each do |valid_status|
+      ["todo", "doing", "done"].each do |valid_status|
         it "ensures status value including 'ToDo', 'Doing', 'Done'" do
           expect(build(:task, status: valid_status)).to be_valid
         end
@@ -38,7 +38,7 @@ RSpec.describe Task, type: :model do
     end
 
     context "valid entry" do
-      ["Low", "Mid", "High"].each do |valid_priority|
+      ["low", "mid", "high"].each do |valid_priority|
         it "ensures priority value including 'Low', 'Mid', 'High'" do
           expect(build(:task, priority: valid_priority)).to be_valid
         end
